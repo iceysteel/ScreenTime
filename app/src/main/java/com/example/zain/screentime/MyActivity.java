@@ -1,5 +1,6 @@
 package com.example.zain.screentime;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,13 +9,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 public class MyActivity extends AppCompatActivity {
+    public final static String EXTRA_MESSAGE = "com.example.zain.screentime.MESSAGE";
+
 
     //called when the user clicks the send button
-
+    /*
+    for this to match with the name from the onClick in the xml you need three things:
+    be public, have return void type, take a view(the one that was clicked) as the parameter.
+     */
     public void sendMessage(View view){
-
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText edittext = (EditText) findViewById(R.id.edit_message);
+        String message = edittext.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
     @Override
